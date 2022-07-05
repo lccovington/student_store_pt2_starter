@@ -5,6 +5,9 @@ const { PORT } = require("./config")
 const { NotFoundError } = require("./utils/errors")
 const security = require("./middleware/security")
 const authRoutes = require("./routes/auth")
+const ordersRoutes = require("./routes/orders")
+const storeRoutes = require("./routes/store")
+
 
 const app = express()
 

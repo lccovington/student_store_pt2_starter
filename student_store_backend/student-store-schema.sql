@@ -19,14 +19,17 @@ CREATE TABLE products (
 
 CREATE TABLE orders (
   id              SERIAL PRIMARY KEY,
-  customer_id     INTEGER NOT NULL REFERENCES users(id),
+  customer_id     INTEGER NOT NULL,
   created_at      TIMESTAMP NOT NULL DEFAULT NOW()
+  FOREIGN KEY (customer_id) REFERENCES users(id)
 );
 
 CREATE TABLE order_details (
-  order_id          INTEGER NOT NULL REFERENCES orders(id),
-  product_id        INTEGER NOT NULL REFERENCES products(id),
+  order_id          INTEGER NOT NULL,
+  product_id        INTEGER NOT NULL,
   quantity          INTEGER NOT NULL DEFAULT 1,
-  discount          INTEGER,
+  discount          INTEGER NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES orders(id),
+  FOREIGN KEY (product_id) REFERENCES products(id),
   PRIMARY KEY (order_id, product_id)
 );
