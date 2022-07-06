@@ -5,7 +5,7 @@ import Instagram from "../Icons/Instagram"
 import Facebook from "../Icons/Facebook"
 import "./Navbar.css"
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <nav className="Navbar">
       <div className="content">
@@ -34,6 +34,13 @@ export default function Navbar() {
           <li>
             <Link to="/#Buy">Buy Now</Link>
           </li>
+          {props.user?.email ? 
+          <li onClick={props.handleLogout}><Link to="/">Logout</Link></li> : 
+            <>
+            <li><Link to="/login" label="Login">Login</Link></li>
+            <li ><Link to="/signup" label="Sign Up">Sign Up</Link></li>
+            </>
+        }      
         </ul>
       </div>
     </nav>

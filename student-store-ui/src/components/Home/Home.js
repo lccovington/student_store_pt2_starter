@@ -20,6 +20,7 @@ export default function Home({
   addToCart,
   removeFromCart,
   getQuantityOfItemInCart,
+  handleLogout
 }) {
   const location = useLocation()
 
@@ -34,11 +35,12 @@ export default function Home({
 
   return (
     <div className="Home">
-      <Navbar />
+      <Navbar handleLogout={handleLogout}/>
       <SubNavbar
         user={user}
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
+        handleLogout={handleLogout}
         handleOnSearchInputChange={handleOnSearchInputChange}
         searchInputValue={searchInputValue}
       />

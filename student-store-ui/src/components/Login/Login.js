@@ -34,11 +34,14 @@ export default function Login({ user, setUser }) {
 
   const handleOnSubmit = async () => {
     setIsProcessing(true)
-    setErrors((e) => ({ ...e, form: null }))
 
-    const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password})
+    setErrors((error) => ({ ...error, form: null }))
 
-    if (error) setErrors((error) => ({ ...error, form: error }))
+    const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password })
+
+    if (error) {
+      setErrors((error) => ({ ...error, form: error }))
+    }
 
     if (data?.user) {
       setUser(data.user)

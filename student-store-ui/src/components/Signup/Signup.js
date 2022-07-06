@@ -55,7 +55,7 @@ export default function Signup({ user, setUser }) {
     }
 
 
-    const { data, error } = await apiClient.signupUser({ email: form.email, password: form.password})
+    const { data, error } = await apiClient.signupUser({ email: form.email, username: form.username, name: form.name, password: form.password })
 
     if (error) setErrors((error) => ({ ...error, form: error }))
 
@@ -105,6 +105,18 @@ export default function Signup({ user, setUser }) {
               onChange={handleOnInputChange}
             />
             {errors.name && <span className="error">{errors.name}</span>}
+          </div>
+
+          <div className="input-field">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              value={form.username}
+              onChange={handleOnInputChange}
+            />
+            {errors.username && <span className="error">{errors.username}</span>}
           </div>
 
           <div className="input-field">

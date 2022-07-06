@@ -34,12 +34,29 @@ class ApiClient {
         }
     }
 
+    async fetchUserFromToken() {
+        return await this.request({ endpoint: "auth/me", method: "GET" })
+    }
+
+    async fetchProducts() {
+        return await this.request({ endpoint: "store", method: "GET", data: null });
+    }
+
+    async createOrder({order}) {
+        return await this.request({ endpoint: "order", method: "POST", data: order });
+    }
+
     async loginUser(credentials) {
-        return await this.request({ endpoint: "auth/login/", method: "POST", data: credentials }) 
+        return await this.request({ endpoint: "auth/login", method: "POST", data: credentials }) 
     }
 
     async signupUser(credentials) {
-        return await this.request({ endpoint: "auth/register/", method: "POST", data: credentials }) 
+        return await this.request({ endpoint: "auth/register", method: "POST", data: credentials }) 
+    }
+
+    async logoutUser() {
+        this.setToken(null)
+        localStorage.setItem(this.tokenName, "")
     }
 }
 
